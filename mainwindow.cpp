@@ -4,12 +4,18 @@
 #include <QMessageBox>
 #include <QDoubleSpinBox>
 #include <cmath>
+#include <QPixmap>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QPixmap pix(":/kartinka/img/picture.jpg");
+    int wd= ui->label_4->width();
+    int hg= ui->label_4->height();
+    ui->label_4->setPixmap(pix.scaled(wd,hg,Qt::KeepAspectRatio));
+
     ui->comboBox->addItem("Формула Мостеллера");
     ui->comboBox->addItem("Формула Дюбуа");
     ui->comboBox->addItem("Формула Дюбуа (модификация)");
