@@ -36,28 +36,29 @@ void MainWindow::on_pushButton_clicked()
     float weight = ui->doubleSpinBox_2->value();
     float result = 0;
 
-if (ui->radioButton->isChecked() == false)
+if (ui->checkBox->isChecked() == false)
  {
     if(index == 0)
     {
         result = ( sqrt(weight*height/3600));
-        QMessageBox::information(this,"Итог ",QString("Ваша площадь в санитметрах квадратных равна: %1").arg(result));
+        QMessageBox::information(this,"Итог ",QString("Ваша площадь в квадратных метрах равна: %1").arg(result));
 
     } else if(index== 1)
     {
         result = ((powf(weight,0.425))*(powf(height,0.725))/139.2);
-        QMessageBox::information(this,"Итог ",QString("Ваша площадь в санитметрах квадратных равна: %1").arg(result));
+        QMessageBox::information(this,"Итог ",QString("Ваша площадь в квадратных метрах равна: %1").arg(result));
 
     }else if (index ==2)
     {
         result = ((0.007184 *powf(weight,0.425))*(powf(height,0.725)));
-        QMessageBox::information(this,"Итог ",QString("Ваша площадь в санитметрах квадратных равна: %1").arg(result));
+        QMessageBox::information(this,"Итог ",QString("Ваша площадь в квадратных метрах равна: %1").arg(result));
 
     }
  } else
   {
+   // ui->checkBox->setEnabled(false);
     result = (( sqrt(weight*height/3600))+((powf(weight,0.425))*(powf(height,0.725))/139.2)+((0.007184 *powf(weight,0.425))*(powf(height,0.725))))/3;
-    QMessageBox::information(this,"Итог ",QString("СРЕДНЯЯ ПО ФОРМУЛАМ Ваша площадь в санитметрах квадратных равна: %1").arg(result));
+    QMessageBox::information(this,"Итог ",QString("СРЕДНЯЯ ПО ФОРМУЛАМ Ваша площадь в квадратных метрах равна: %1").arg(result));
   }
 }
 void MainWindow::on_doubleSpinBox_editingFinished()
@@ -69,4 +70,18 @@ void MainWindow::on_doubleSpinBox_editingFinished()
 void MainWindow::on_radioButton_clicked(bool checked)
 {
 
+}
+
+void MainWindow::on_checkBox_clicked()
+{
+    bool b;
+    if(ui->checkBox->isChecked()==true)
+    {
+   b =false;
+    ui->comboBox->setEnabled(b);
+    }
+    else
+    {
+        b=true; ui->comboBox->setEnabled(b);
+    }
 }
